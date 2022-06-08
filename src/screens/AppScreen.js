@@ -23,11 +23,9 @@ import Hero from '../components/Hero';
 import Colors from '../constants/Colors';
 
 const AppScreen: () => Node = () => {
-  const isDarkMode = true;
-
   return (
-    <SafeAreaView style={{backgroundColor: Colors.background}}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+    <View style={{backgroundColor: Colors.background}}>
+      <StatusBar barStyle={'light-content'} />
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={{backgroundColor: Colors.background}}>
@@ -49,7 +47,7 @@ const AppScreen: () => Node = () => {
           <LearnMoreLinks />
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 };
 

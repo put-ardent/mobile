@@ -2,6 +2,7 @@ import React from 'react';
 import {Image, StyleSheet, View} from 'react-native';
 import Layout from '../constants/Layout';
 import LevelBadge from './LevelBadge';
+import Colors from '../constants/Colors';
 
 const Hero = ({iconId, level}): Node => {
   return (
@@ -29,6 +30,8 @@ const Hero = ({iconId, level}): Node => {
 const styles = StyleSheet.create({
   round: {
     borderRadius: 100,
+    borderColor: Colors.levelBadge.border,
+    borderWidth: 1.5,
   },
   shaded: {
     shadowOffset: {width: 0, height: 5},
