@@ -5,7 +5,10 @@ const runSocket = async () => {
   console.log('running socket');
   socket.bind(6969);
   socket.on('message', function (msg, rinfo) {
-    console.log('Message received', msg);
+    console.log(
+      'Message received',
+      String.fromCharCode.apply(null, new Uint8Array(msg)),
+    );
   });
 };
 
