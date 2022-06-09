@@ -6,12 +6,10 @@ import React from 'react';
 import type {Node} from 'react';
 import {
   DebugInstructions,
-  Header,
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import {
-  SafeAreaView,
   ScrollView,
   StatusBar,
   StyleSheet,
@@ -24,37 +22,33 @@ import Colors from '../constants/Colors';
 
 const AppScreen: () => Node = () => {
   return (
-    <View style={{backgroundColor: Colors.background}}>
+    <View style={styles.sectionContainer}>
       <StatusBar barStyle={'light-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={{backgroundColor: Colors.background}}>
-        <View style={{backgroundColor: Colors.background}}>
-          <Hero iconId={608} level={162} />
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
+      <View style={{backgroundColor: Colors.background}}>
+        <Hero iconId={608} level={162} />
+        <Section title="Step One">
+          Edit <Text style={styles.highlight}>App.js</Text> to change this
+          screen and then come back to see your edits.
+        </Section>
+        <Section title="See Your Changes">
+          <ReloadInstructions />
+        </Section>
+        <Section title="Debug">
+          <DebugInstructions />
+        </Section>
+        <Section title="Learn More">
+          Read the docs to discover what to do next:
+        </Section>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+    paddingTop: 32,
+    backgroundColor: Colors.background,
+    flex: 1,
   },
   sectionTitle: {
     fontSize: 24,
