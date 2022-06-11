@@ -3,19 +3,20 @@
  * @flow strict-local
  */
 import type {Node} from 'react';
-import AppScreen from './src/screens/AppScreen';
-import React, {useEffect} from 'react';
+import React from 'react';
 import {useSelector} from 'react-redux';
-import {Text} from 'react-native';
+import LoadingScreen from './src/screens/LoadingScreen';
+import QueueScreen from './src/screens/QueueScreen';
 
 const App: () => Node = () => {
-  const {league} = useSelector(state => state);
+  const {steps} = useSelector(state => state);
 
-  useEffect(() => {
-    console.log(league);
-  }, [league]);
-
-  return league.step == 0 ? <AppScreen /> : <Text>pomelo</Text>;
+  switch (steps.step) {
+    case 1:
+      return <QueueScreen />;
+    default:
+      return <LoadingScreen />;
+  }
 };
 
 export default App;

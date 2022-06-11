@@ -1,6 +1,6 @@
 import {createStore, combineReducers} from 'redux';
-import leagueReducer from '../src/reducers/leagueReducer';
-const rootReducer = combineReducers({league: leagueReducer});
+import stepsReducer from '../src/reducers/stepsReducer';
+const rootReducer = combineReducers({steps: stepsReducer});
 const configureStore = () => {
   return createStore(rootReducer);
 };

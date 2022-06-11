@@ -20,6 +20,4 @@ const ReduxApp = () => (
   </Provider>
 );
 
-// AppRegistry.registerHeadlessTask('udp-connection', () => runSocket);
-// AppRegistry.startHeadlessTask(1, 'udp-connection');
 AppRegistry.registerComponent(appName, () => ReduxApp);
