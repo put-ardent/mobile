@@ -3,7 +3,7 @@ export const onConnection = address => {
   fetch('http://' + address + ':2138/connection', {
     method: 'POST',
     body: JSON.stringify({
-      host: '192.168.1.1',
+      port: 6969,
     }),
   });
   console.log('Connection made.');
