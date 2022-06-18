@@ -19,9 +19,8 @@ const Udp: () => Node = props => {
   useEffect(() => {
     const socket = UdpSockets.createSocket({type: 'udp4'});
     socket.bind(6969);
-    socket.on('message', function (rawMessage, rinfo) {
+    socket.on('message', function (rawMessage) {
       const message = parseMessage(rawMessage);
-      console.log(message);
       dispatch(message);
     });
     return () => {

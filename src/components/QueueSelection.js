@@ -3,13 +3,10 @@ import {ActivityIndicator, StyleSheet, Text} from 'react-native';
 import CustomButton from './CustomButton';
 import {useDispatch} from 'react-redux';
 import Colors from '../constants/Colors';
+import {capitalizeFirstLetter} from '../utils/stringUtils';
 
 const QueueSelection = ({types, onSelection}): Node => {
   const dispatch = useDispatch();
-
-  function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
 
   return (
     <>
@@ -26,7 +23,7 @@ const QueueSelection = ({types, onSelection}): Node => {
               <CustomButton
                 key={type}
                 title={capitalizeFirstLetter(type)}
-                onPress={() => dispatch(onSelection(types[type]))}
+                onPress={() => dispatch(onSelection(types[type], type))}
               />
             );
           })}

@@ -14,10 +14,12 @@ import {useDispatch} from 'react-redux';
 import QueueSelection from '../components/QueueSelection';
 import CustomButton from '../components/CustomButton';
 import QueueTimer from '../components/QueueTimer';
+import {capitalizeFirstLetter} from '../utils/stringUtils';
 
 const QueueScreen: () => Node = () => {
   const {steps, queue} = useSelector(state => state);
-  const {types, selectedType, selectedQueue, gameStarted} = queue;
+  const {types, selectedType, selectedTypeName, selectedQueue, gameStarted} =
+    queue;
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -39,6 +41,9 @@ const QueueScreen: () => Node = () => {
         <QueueTimer desktopHost={steps.desktopHost} />
       ) : selectedType ? (
         <>
+          <Text style={styles.text}>
+            {capitalizeFirstLetter(selectedTypeName)}
+          </Text>
           {selectedType.map(gameType => {
             return (
               <CustomButton
@@ -72,6 +77,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   text: {
+    marginBottom: 10,
     fontSize: 20,
     color: Colors.text,
     alignSelf: 'center',

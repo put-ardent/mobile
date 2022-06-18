@@ -11,6 +11,7 @@ import {
 const initialState = {
   types: [],
   selectedType: undefined,
+  selectedTypeName: undefined,
   selectedQueue: undefined,
   timer: 0,
   acceptTimer: 0,
@@ -31,6 +32,7 @@ const queueReducer = (state = initialState, action) => {
       return {
         ...state,
         selectedType: action.payload,
+        selectedTypeName: action.selectedTypeName,
       };
     case SET_SELECTED_QUEUE:
       return {

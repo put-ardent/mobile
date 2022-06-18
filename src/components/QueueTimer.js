@@ -29,7 +29,6 @@ const QueueTimer = ({desktopHost}): Node => {
 
   useEffect(() => {
     if (state === 'EveryoneReady') {
-      console.log('EveryoneReady');
       dispatch(onJoinedLobby());
     }
   }, [dispatch, state, desktopHost]);
