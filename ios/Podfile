@@ -19,6 +19,7 @@ target 'ArdentIOS' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
+
   target 'ArdentIOSTests' do
     inherit! :complete
     # Pods for testing

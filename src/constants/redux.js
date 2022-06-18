@@ -3,3 +3,7 @@ export const GET_QUEUES = 'GET_QUEUES';
 export const SET_SELECTED_QUEUE_TYPE = 'SET_SELECTED_QUEUE_TYPE';
 export const SET_SELECTED_QUEUE = 'SET_SELECTED_QUEUE';
 export const QUEUE_TIMER = 'queue-timer';
+export const ACCEPT_QUEUE_TIMER = 'accept-queue-timer';
+export const STOP_QUEUE = 'STOP_QUEUE';
+export const ACCEPT_QUEUE = 'ACCEPT_QUEUE';
+export const DECLINE_QUEUE = 'DECLINE_QUEUE';

@@ -20,7 +20,7 @@ const QueueSelection = ({types, onSelection}): Node => {
         </>
       ) : (
         <>
-          <Text>Select queue type</Text>
+          <Text style={styles.text}>Select queue type</Text>
           {Object.keys(types).map(type => {
             return (
               <CustomButton
@@ -38,7 +38,7 @@ const QueueSelection = ({types, onSelection}): Node => {
 
 const styles = StyleSheet.create({
   text: {
-    marginTop: 10,
+    marginBottom: 10,
     fontSize: 20,
     color: Colors.text,
     alignSelf: 'center',

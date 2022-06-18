@@ -4,7 +4,7 @@
  */
 import React, {useEffect} from 'react';
 import type {Node} from 'react';
-import {StyleSheet, Text} from 'react-native';
+import {Button, StyleSheet} from 'react-native';
 import Colors from '../constants/Colors';
 import Animated, {SlideInRight, SlideOutLeft} from 'react-native-reanimated';
 import {onConnection} from '../actions/steps';
@@ -17,7 +17,7 @@ import QueueTimer from '../components/QueueTimer';
 
 const QueueScreen: () => Node = () => {
   const {steps, queue} = useSelector(state => state);
-  const {types, selectedType, timer, estimatedTime, selectedQueue} = queue;
+  const {types, selectedType, selectedQueue} = queue;
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -34,25 +34,24 @@ const QueueScreen: () => Node = () => {
       entering={SlideInRight}
       exiting={SlideOutLeft.duration(1000)}>
       {selectedQueue ? (
-        <QueueTimer timer={timer} estimatedTime={estimatedTime} />
+        <QueueTimer desktopHost={steps.desktopHost} />
       ) : selectedType ? (
         <>
           {selectedType.map(gameType => {
-            return gameType.id === 430 ? (
+            return (
               <CustomButton
                 key={gameType.id}
-                // title={gameType.description}
-                title={'Start queue'}
+                title={gameType.description}
                 onPress={() =>
                   dispatch(startQueue(steps.desktopHost, gameType))
                 }
               />
-            ) : null;
+            );
           })}
-          {/*<Button*/}
-          {/*  title={'Go back'}*/}
-          {/*  onPress={() => dispatch(setSelectedQueueType(undefined))}*/}
-          {/*/>*/}
+          <Button
+            title={'Go back'}
+            onPress={() => dispatch(setSelectedQueueType(undefined))}
+          />
         </>
       ) : (
         <>
