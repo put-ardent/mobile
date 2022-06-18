@@ -1,8 +1,10 @@
 import axios from 'axios';
 import axiosRetry from 'axios-retry';
 import {
+  ACCEPT_QUEUE,
   DECLINE_QUEUE,
   GET_QUEUES,
+  JOINED_LOBBY,
   SET_SELECTED_QUEUE,
   SET_SELECTED_QUEUE_TYPE,
   STOP_QUEUE,
@@ -54,7 +56,7 @@ export const acceptQueue = address => {
   return dispatch => {
     axios.post(`http://${address}:2138/queue/accept`).then(() => {
       dispatch({
-        type: STOP_QUEUE,
+        type: ACCEPT_QUEUE,
       });
     });
   };
@@ -67,6 +69,14 @@ export const declineQueue = address => {
       dispatch({
         type: DECLINE_QUEUE,
       });
+    });
+  };
+};
+
+export const onJoinedLobby = () => {
+  return dispatch => {
+    dispatch({
+      type: JOINED_LOBBY,
     });
   };
 };

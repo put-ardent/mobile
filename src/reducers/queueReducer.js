@@ -1,7 +1,7 @@
 import {
   ACCEPT_QUEUE_TIMER,
-  DECLINE_QUEUE,
   GET_QUEUES,
+  JOINED_LOBBY,
   QUEUE_TIMER,
   SET_SELECTED_QUEUE,
   SET_SELECTED_QUEUE_TYPE,
@@ -18,6 +18,7 @@ const initialState = {
   queueFound: false,
   playerResponse: 'None',
   state: 'InProgress',
+  gameStarted: false,
 };
 const queueReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -61,9 +62,10 @@ const queueReducer = (state = initialState, action) => {
         acceptTimer: 0,
         state: 'InProgress',
       };
-    case DECLINE_QUEUE:
+    case JOINED_LOBBY:
       return {
         ...state,
+        gameStarted: true,
       };
     default:
       return state;

@@ -7,3 +7,4 @@ export const ACCEPT_QUEUE_TIMER = 'accept-queue-timer';
 export const STOP_QUEUE = 'STOP_QUEUE';
 export const ACCEPT_QUEUE = 'ACCEPT_QUEUE';
 export const DECLINE_QUEUE = 'DECLINE_QUEUE';
+export const JOINED_LOBBY = 'JOINED_LOBBY';

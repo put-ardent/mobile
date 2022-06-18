@@ -3,7 +3,12 @@ import {StyleSheet, Text} from 'react-native';
 import Colors from '../constants/Colors';
 import CustomButton from './CustomButton';
 import {useDispatch, useSelector} from 'react-redux';
-import {declineQueue, stopQueue} from '../actions/queue';
+import {
+  acceptQueue,
+  declineQueue,
+  onJoinedLobby,
+  stopQueue,
+} from '../actions/queue';
 import {AnimatedCircularProgress} from 'react-native-circular-progress';
 
 const QueueTimer = ({desktopHost}): Node => {
@@ -21,6 +26,13 @@ const QueueTimer = ({desktopHost}): Node => {
       dispatch(stopQueue(desktopHost));
     }
   }, [dispatch, state, desktopHost]);
+
+  useEffect(() => {
+    if (state === 'EveryoneReady') {
+      console.log('EveryoneReady');
+      dispatch(onJoinedLobby());
+    }
+  }, [dispatch, state, desktopHost]);
   return (
     <>
       {queueFound ? (
@@ -33,13 +45,19 @@ const QueueTimer = ({desktopHost}): Node => {
             rotation={0}
             fill={100 - (acceptTimer / 12) * 100}
             tintColor="#00e0ff"
-            onAnimationComplete={() => console.log('onAnimationComplete')}
             backgroundColor="#3d5875">
-            {() => <Text style={styles.timer}>{12 - acceptTimer}</Text>}
+            {() => (
+              <Text style={styles.timer}>
+                {12 - acceptTimer > 0 ? 12 - acceptTimer : 0}
+              </Text>
+            )}
           </AnimatedCircularProgress>
           {playerResponse === 'None' ? (
             <>
-              <CustomButton title={'Accept'} />
+              <CustomButton
+                title={'Accept'}
+                onPress={() => dispatch(acceptQueue(desktopHost))}
+              />
               <CustomButton
                 title={'Decline'}
                 onPress={() => dispatch(declineQueue(desktopHost))}

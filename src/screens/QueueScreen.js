@@ -4,7 +4,7 @@
  */
 import React, {useEffect} from 'react';
 import type {Node} from 'react';
-import {Button, StyleSheet} from 'react-native';
+import {Button, StyleSheet, Text} from 'react-native';
 import Colors from '../constants/Colors';
 import Animated, {SlideInRight, SlideOutLeft} from 'react-native-reanimated';
 import {onConnection} from '../actions/steps';
@@ -17,7 +17,7 @@ import QueueTimer from '../components/QueueTimer';
 
 const QueueScreen: () => Node = () => {
   const {steps, queue} = useSelector(state => state);
-  const {types, selectedType, selectedQueue} = queue;
+  const {types, selectedType, selectedQueue, gameStarted} = queue;
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -33,7 +33,9 @@ const QueueScreen: () => Node = () => {
       style={styles.sectionContainer}
       entering={SlideInRight}
       exiting={SlideOutLeft.duration(1000)}>
-      {selectedQueue ? (
+      {gameStarted ? (
+        <Text style={styles.text}>Your game has started, GL!</Text>
+      ) : selectedQueue ? (
         <QueueTimer desktopHost={steps.desktopHost} />
       ) : selectedType ? (
         <>
@@ -68,6 +70,11 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.background,
     flex: 1,
     justifyContent: 'center',
+  },
+  text: {
+    fontSize: 20,
+    color: Colors.text,
+    alignSelf: 'center',
   },
 });
 
