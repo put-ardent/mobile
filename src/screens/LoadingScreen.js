@@ -4,7 +4,12 @@
  */
 import React from 'react';
 import type {Node} from 'react';
-import {ActivityIndicator, StyleSheet, Text} from 'react-native';
+import {
+  ActivityIndicator,
+  ImageBackground,
+  StyleSheet,
+  Text,
+} from 'react-native';
 import Colors from '../constants/Colors';
 import Animated, {SlideOutLeft} from 'react-native-reanimated';
 
@@ -13,23 +18,30 @@ const LoadingScreen: () => Node = () => {
     <Animated.View
       style={styles.sectionContainer}
       exiting={SlideOutLeft.duration(1000)}>
-      <ActivityIndicator size={'large'} />
-      <Text style={styles.text}>Waiting for connection</Text>
+      <ImageBackground
+        source={require('./img/2019-intro-background.jpeg')}
+        style={styles.sectionBackground}>
+        <ActivityIndicator size={'large'} color={Colors.gold} />
+        <Text style={styles.text}>Waiting for connection</Text>
+      </ImageBackground>
     </Animated.View>
   );
 };
 
 const styles = StyleSheet.create({
   sectionContainer: {
-    paddingTop: 32,
     backgroundColor: Colors.background,
     flex: 1,
     justifyContent: 'center',
   },
+  sectionBackground: {
+    flex: 1,
+    justifyContent: 1,
+  },
   text: {
     marginTop: 10,
     fontSize: 20,
-    color: Colors.text,
+    color: Colors.gold,
     alignSelf: 'center',
   },
 });

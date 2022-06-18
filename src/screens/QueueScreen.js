@@ -4,7 +4,7 @@
  */
 import React, {useEffect} from 'react';
 import type {Node} from 'react';
-import {Button, StyleSheet, Text} from 'react-native';
+import {Button, ImageBackground, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Colors from '../constants/Colors';
 import Animated, {SlideInRight, SlideOutLeft} from 'react-native-reanimated';
 import {onConnection} from '../actions/steps';
@@ -15,6 +15,8 @@ import QueueSelection from '../components/QueueSelection';
 import CustomButton from '../components/CustomButton';
 import QueueTimer from '../components/QueueTimer';
 import {capitalizeFirstLetter} from '../utils/stringUtils';
+import {Rect} from 'react-native-svg';
+import PrettyButton from '../components/PrettyButton';
 
 const QueueScreen: () => Node = () => {
   const {steps, queue} = useSelector(state => state);
@@ -35,51 +37,58 @@ const QueueScreen: () => Node = () => {
       style={styles.sectionContainer}
       entering={SlideInRight}
       exiting={SlideOutLeft.duration(1000)}>
-      {gameStarted ? (
-        <Text style={styles.text}>Your game has started, GL!</Text>
-      ) : selectedQueue ? (
-        <QueueTimer desktopHost={steps.desktopHost} />
-      ) : selectedType ? (
-        <>
-          <Text style={styles.text}>
-            {capitalizeFirstLetter(selectedTypeName)}
-          </Text>
-          {selectedType.map(gameType => {
-            return (
-              <CustomButton
-                key={gameType.id}
-                title={gameType.description}
-                onPress={() =>
-                  dispatch(startQueue(steps.desktopHost, gameType))
-                }
-              />
-            );
-          })}
-          <Button
-            title={'Go back'}
-            onPress={() => dispatch(setSelectedQueueType(undefined))}
-          />
-        </>
-      ) : (
-        <>
-          <QueueSelection types={types} onSelection={setSelectedQueueType} />
-        </>
-      )}
+      <ImageBackground
+        source={require('./img/2019-intro-background.jpeg')}
+        style={styles.sectionBackground}>
+        {gameStarted ? (
+          <Text style={styles.text}>Your game has started, GL!</Text>
+        ) : selectedQueue ? (
+          <QueueTimer desktopHost={steps.desktopHost} />
+        ) : selectedType ? (
+          <>
+            <Text style={styles.text}>
+              {capitalizeFirstLetter(selectedTypeName)}
+            </Text>
+            {selectedType.map(gameType => {
+              return (
+                <CustomButton
+                  key={gameType.id}
+                  title={gameType.description}
+                  onPress={() =>
+                    dispatch(startQueue(steps.desktopHost, gameType))
+                  }
+                />
+              );
+            })}
+            <PrettyButton
+              action={setSelectedQueueType(undefined)}
+              text={'Go back'}
+            />
+          </>
+        ) : (
+          <>
+            <QueueSelection types={types} onSelection={setSelectedQueueType} />
+          </>
+        )}
+      </ImageBackground>
     </Animated.View>
   );
 };
 
 const styles = StyleSheet.create({
   sectionContainer: {
-    paddingTop: 32,
     backgroundColor: Colors.background,
     flex: 1,
     justifyContent: 'center',
   },
+  sectionBackground: {
+    flex: 1,
+    justifyContent: 1,
+  },
   text: {
     marginBottom: 10,
     fontSize: 20,
-    color: Colors.text,
+    color: Colors.gold,
     alignSelf: 'center',
   },
 });
