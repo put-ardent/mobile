@@ -4,7 +4,7 @@
  */
 import React, {useEffect} from 'react';
 import type {Node} from 'react';
-import {Button, ImageBackground, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {ImageBackground, StyleSheet, Text} from 'react-native';
 import Colors from '../constants/Colors';
 import Animated, {SlideInRight, SlideOutLeft} from 'react-native-reanimated';
 import {onConnection} from '../actions/steps';
@@ -15,8 +15,6 @@ import QueueSelection from '../components/QueueSelection';
 import CustomButton from '../components/CustomButton';
 import QueueTimer from '../components/QueueTimer';
 import {capitalizeFirstLetter} from '../utils/stringUtils';
-import {Rect} from 'react-native-svg';
-import PrettyButton from '../components/PrettyButton';
 
 const QueueScreen: () => Node = () => {
   const {steps, queue} = useSelector(state => state);
@@ -60,9 +58,9 @@ const QueueScreen: () => Node = () => {
                 />
               );
             })}
-            <PrettyButton
-              action={setSelectedQueueType(undefined)}
-              text={'Go back'}
+            <CustomButton
+              onPress={() => dispatch(setSelectedQueueType(undefined))}
+              title={'Go back'}
             />
           </>
         ) : (
