@@ -4,7 +4,7 @@
  */
 import React, {useEffect} from 'react';
 import type {Node} from 'react';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Text} from 'react-native';
 import Colors from '../constants/Colors';
 import Animated, {SlideInRight, SlideOutLeft} from 'react-native-reanimated';
 import {onConnection} from '../actions/steps';
@@ -13,10 +13,11 @@ import {onGetQueues, setSelectedQueueType, startQueue} from '../actions/queue';
 import {useDispatch} from 'react-redux';
 import QueueSelection from '../components/QueueSelection';
 import CustomButton from '../components/CustomButton';
+import QueueTimer from '../components/QueueTimer';
 
 const QueueScreen: () => Node = () => {
   const {steps, queue} = useSelector(state => state);
-  const {types, selectedType} = queue;
+  const {types, selectedType, timer, estimatedTime, selectedQueue} = queue;
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -32,7 +33,9 @@ const QueueScreen: () => Node = () => {
       style={styles.sectionContainer}
       entering={SlideInRight}
       exiting={SlideOutLeft.duration(1000)}>
-      {selectedType ? (
+      {selectedQueue ? (
+        <QueueTimer timer={timer} estimatedTime={estimatedTime} />
+      ) : selectedType ? (
         <>
           {selectedType.map(gameType => {
             return gameType.id === 430 ? (
