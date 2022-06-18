@@ -22,6 +22,7 @@ const CustomButton = ({onPress, title}): Node => {
 const styles = StyleSheet.create({
   button: {
     width: 120,
+    marginTop: 20,
     height: 30,
     alignSelf: 'center',
     textAlign: 'center',

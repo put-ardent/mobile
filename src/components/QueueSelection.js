@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   text: {
     marginBottom: 10,
     fontSize: 20,
-    color: Colors.text,
+    color: Colors.gold,
     alignSelf: 'center',
   },
 });
