@@ -1,4 +1,5 @@
 import axios from 'axios';
+import axiosRetry from 'axios-retry';
 import {
   GET_QUEUES,
   SET_SELECTED_QUEUE,
@@ -7,6 +8,9 @@ import {
 
 export const onGetQueues = address => {
   console.log('getting queues');
+  axiosRetry(axios, {
+    retries: Infinity,
+  });
   return dispatch => {
     axios.get(`http://${address}:2138/queues`).then(response => {
       dispatch({type: GET_QUEUES, payload: response.data.data});

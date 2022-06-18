@@ -1,7 +1,8 @@
 import React from 'react';
-import {ActivityIndicator, Text} from 'react-native';
+import {ActivityIndicator, StyleSheet, Text} from 'react-native';
 import CustomButton from './CustomButton';
 import {useDispatch} from 'react-redux';
+import Colors from '../constants/Colors';
 
 const QueueSelection = ({types, onSelection}): Node => {
   const dispatch = useDispatch();
@@ -15,7 +16,7 @@ const QueueSelection = ({types, onSelection}): Node => {
       {types.length === 0 ? (
         <>
           <ActivityIndicator size={'large'} />
-          <Text>Looking for queues</Text>
+          <Text style={styles.text}>Looking for queues</Text>
         </>
       ) : (
         <>
@@ -34,5 +35,14 @@ const QueueSelection = ({types, onSelection}): Node => {
     </>
   );
 };
+
+const styles = StyleSheet.create({
+  text: {
+    marginTop: 10,
+    fontSize: 20,
+    color: Colors.text,
+    alignSelf: 'center',
+  },
+});
 
 export default QueueSelection;
